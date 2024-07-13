@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RsfRbrFfbSensScaler": {
+      "commandName": "Project",
+      "workingDirectory": "..\\Testing"
+    }
+  }
+}

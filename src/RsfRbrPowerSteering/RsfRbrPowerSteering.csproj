@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
+    <UseWPF>true</UseWPF>
+    <Company>Michael Pohl</Company>
+    <NeutralLanguage>en</NeutralLanguage>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <FileVersion>$(Version)</FileVersion>
+    <Version>1.0.0</Version>
+    <Copyright>CC BY-NC 4.0</Copyright>
+    <Description>This utility is for Richard Burns Rally (RBR) as distributed by RallySimFan.hu (RSF). It allows to set the force-feedback (FFB) sensitivity for all cars that you have driven previously, based on the lock-to-lock rotation of the steering wheel. Additional scaling can be applied depending on drive-train and surface.</Description>
+    <Title>RSF RBR Power Steering</Title>
+    <Product>$(Title)</Product>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.122" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RsfRbrPowerSteering.ViewModel\RsfRbrPowerSteering.ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="View\ViewTexts.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ViewTexts.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="View\ViewTexts.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ViewTexts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="View\IntProgressTextBox.xaml">
+      <CustomToolNamespace></CustomToolNamespace>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="View\MainWindow.xaml">
+      <CustomToolNamespace></CustomToolNamespace>
+    </Page>
+  </ItemGroup>
+
+</Project>

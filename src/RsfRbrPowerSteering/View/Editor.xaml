@@ -1,0 +1,444 @@
+﻿<UserControl x:Class="RsfRbrPowerSteering.View.Editor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+    xmlns:view="clr-namespace:RsfRbrPowerSteering.View"
+    mc:Ignorable="d" 
+    d:DesignHeight="800" d:DesignWidth="800"
+    x:Name="RootElement"
+    HorizontalAlignment="Stretch">
+
+    <UserControl.Resources>
+        <CollectionViewSource Source="{Binding Cars}" x:Key="CarsSortedPrimary">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="Name" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+        <CollectionViewSource Source="{Binding Cars}" x:Key="CarsSortedSecondary">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="Name" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="Cars" Width="*" MinWidth="100" />
+            <ColumnDefinition Width="4" />
+            <ColumnDefinition SharedSizeGroup="Cars" Width="*" MinWidth="100" />
+            <ColumnDefinition Width="4" />
+            <ColumnDefinition Width="Auto" MinWidth="70" />
+            <ColumnDefinition Width="4" MaxWidth="4" />
+            <ColumnDefinition Width="Auto" MinWidth="30" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" MinHeight="40" />
+            <RowDefinition Height="Auto" MinHeight="40" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition SharedSizeGroup="LockToLockRotation" />
+            <RowDefinition SharedSizeGroup="LockToLockRotation" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Margin="0,0,4,8"
+                    Visibility="{Binding IsDescriptionVisible, Converter={StaticResource BooleanToVisibility}}"
+                    Text="{x:Static view:ViewTexts.Description}" TextAlignment="Left"
+                    TextWrapping="Wrap" />
+            <Button Grid.Column="1"
+                    FontFamily="Segoe UI Symbol" Content="&#xE11B;" VerticalAlignment="Top"
+                    Command="{Binding Commands.ToggleDescriptionVisibility}"
+                    Margin="0,0,0,4"
+                    Visibility="{Binding IsDescriptionVisible, Converter={StaticResource BooleanToVisibility}}" />
+        </Grid>
+
+        <Button Grid.Row="1" Grid.Column="8"
+                FontFamily="Segoe UI Symbol" Content="&#xE11B;"
+                VerticalAlignment="Top" HorizontalAlignment="Right"
+                Command="{Binding Commands.ToggleDescriptionVisibility}"
+                Margin="0,0,0,4"
+                Visibility="{Binding IsDescriptionHidden, Converter={StaticResource BooleanToVisibility}}" />
+
+        <Button Grid.Row="1" Grid.Column="0"
+                Command="{Binding Commands.ResetToDefaults}"
+                Content="{x:Static view:ViewTexts.ResetToDefaultsButton}" />
+        <Rectangle Style="{StaticResource GroupingBarVertical}"
+                Grid.Row="1" Grid.Column="2" Grid.RowSpan="11" />
+        <Label Content="{x:Static view:ViewTexts.CarPrimaryLabel}"
+                Style="{StaticResource ColumnHeader}"
+                Grid.Row="1" Grid.Column="2" />
+        <Rectangle Style="{StaticResource GroupingBarVertical}"
+                Grid.Row="1" Grid.Column="4" Grid.RowSpan="11" />
+        <Label Content="{x:Static view:ViewTexts.CarSecondaryLabel}"
+                Style="{StaticResource ColumnHeader}"
+                Grid.Row="1" Grid.Column="4" />
+
+        <Button Grid.Row="2" Grid.Column="0"
+                Content="{x:Static view:ViewTexts.CarsReloadButton}"
+                Command="{Binding Commands.ReloadCars}" />
+        <Label Content="{x:Static view:ViewTexts.CarLabel}"
+                Style="{StaticResource RowHeader}"
+                Grid.Row="2" Grid.Column="1" />
+        <ComboBox Grid.Row="2" Grid.Column="2"
+                ItemsSource="{Binding Source={StaticResource CarsSortedPrimary}}"
+                SelectedValue="{Binding PrimaryTemplate.SelectedCarId}"
+                SelectedValuePath="Id"
+                DisplayMemberPath="Description"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+        <ComboBox Grid.Row="2" Grid.Column="4"
+                ItemsSource="{Binding Source={StaticResource CarsSortedSecondary}}"
+                SelectedValue="{Binding SecondaryTemplate.SelectedCarId}"
+                SelectedValuePath="Id"
+                DisplayMemberPath="Description"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+        <Label Content="{x:Static view:ViewTexts.AdjustmentsLabel}"
+                Style="{StaticResource ColumnHeader}"
+                Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="3" />
+        <Rectangle Style="{StaticResource GroupingBarVertical}"
+                Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="3"
+                Grid.RowSpan="10" />
+
+        <Rectangle Style="{StaticResource GroupingBarSecondary}"
+                Grid.Row="3" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="9" />
+        <Label Content="{x:Static view:ViewTexts.SurfaceLabel}"
+                Style="{StaticResource RowHeader}" HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Grid.Row="3" Grid.Column="0" />
+        <Rectangle Style="{StaticResource GroupingBarHorizontal}"
+                Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8" />
+        <RadioButton Grid.Row="3" Grid.Column="1"
+                GroupName="PrimarySurface"
+                Style="{StaticResource ComboBoxSurface}"
+                IsChecked="{Binding Adjustments.IsPrimarySurfaceGravel}">
+            <Label Content="{x:Static view:ViewTexts.SurfaceGravelLabel}"
+                    Style="{StaticResource RowHeaderSecondary}" />
+        </RadioButton>
+        <view:IntProgressTextBox Grid.Row="3" Grid.Column="2"
+                Value="{Binding PrimaryTemplate.FfbSensGravel, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                Minimum="{Binding FfbSensMinimum}"
+                Maximum="{Binding FfbSensMaximum}"
+                ToolTipText="{Binding FfbSensRangeMessage}">
+            <view:IntProgressTextBox.IsEnabled>
+                <MultiBinding Converter="{StaticResource AllTrueConverter}">
+                    <Binding Path="IsNoExclusiveCommandRunning" />
+                    <Binding Path="Adjustments.IsPrimarySurfaceGravelOrNull" />
+                </MultiBinding>
+            </view:IntProgressTextBox.IsEnabled>
+        </view:IntProgressTextBox>
+        <view:IntProgressTextBox Grid.Row="3" Grid.Column="4"
+                Value="{Binding SecondaryTemplate.FfbSensGravel, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                Minimum="{Binding FfbSensMinimum}"
+                Maximum="{Binding FfbSensMaximum}"
+                ToolTipText="{Binding FfbSensRangeMessage}">
+            <view:IntProgressTextBox.IsEnabled>
+                <MultiBinding Converter="{StaticResource AllTrueConverter}">
+                    <Binding Path="IsNoExclusiveCommandRunning" />
+                    <Binding Path="Adjustments.IsPrimarySurfaceGravelOrNull" />
+                </MultiBinding>
+            </view:IntProgressTextBox.IsEnabled>
+        </view:IntProgressTextBox>
+        <view:IntProgressTextBox Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="3"
+                Value="{Binding Adjustments.Gravel}"
+                Minimum="{Binding Adjustments.MinimumDefault}"
+                Maximum="{Binding Adjustments.MaximumDefault}"
+                ToolTipText="{Binding Adjustments.RangeMessageDefault}">
+            <view:IntProgressTextBox.IsEnabled>
+                <MultiBinding Converter="{StaticResource AllTrueConverter}">
+                    <Binding Path="IsNoExclusiveCommandRunning"/>
+                    <Binding Path="Adjustments.IsPrimarySurfaceSet"/>
+                    <Binding Path="Adjustments.IsPrimarySurfaceGravel"
+                        Converter="{StaticResource NotConverter}" />
+                </MultiBinding>
+            </view:IntProgressTextBox.IsEnabled>
+        </view:IntProgressTextBox>
+
+        <Rectangle Style="{StaticResource GroupingBarHorizontal}"
+                Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="8" />
+        <RadioButton Grid.Row="4" Grid.Column="1"
+                GroupName="PrimarySurface"
+                Style="{StaticResource ComboBoxSurface}"
+                IsChecked="{Binding Adjustments.IsPrimarySurfaceTarmac}">
+            <Label Content="{x:Static view:ViewTexts.SurfaceTarmaclLabel}"
+                    Style="{StaticResource RowHeaderSecondary}" />
+        </RadioButton>
+        <view:IntProgressTextBox Grid.Row="4" Grid.Column="2"
+                Value="{Binding PrimaryTemplate.FfbSensTarmac, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                Minimum="{Binding FfbSensMinimum}"
+                Maximum="{Binding FfbSensMaximum}"
+                ToolTipText="{Binding FfbSensRangeMessage}">
+            <view:IntProgressTextBox.IsEnabled>
+                <MultiBinding Converter="{StaticResource AllTrueConverter}">
+                    <Binding Path="IsNoExclusiveCommandRunning" />
+                    <Binding Path="Adjustments.IsPrimarySurfaceTarmacOrNull" />
+                </MultiBinding>
+            </view:IntProgressTextBox.IsEnabled>
+        </view:IntProgressTextBox>
+        <view:IntProgressTextBox Grid.Row="4" Grid.Column="4"
+                Value="{Binding SecondaryTemplate.FfbSensTarmac, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                Minimum="{Binding FfbSensMinimum}"
+                Maximum="{Binding FfbSensMaximum}"
+                ToolTipText="{Binding FfbSensRangeMessage}">
+            <view:IntProgressTextBox.IsEnabled>
+                <MultiBinding Converter="{StaticResource AllTrueConverter}">
+                    <Binding Path="IsNoExclusiveCommandRunning" />
+                    <Binding Path="Adjustments.IsPrimarySurfaceTarmacOrNull" />
+                </MultiBinding>
+            </view:IntProgressTextBox.IsEnabled>
+        </view:IntProgressTextBox>
+        <view:IntProgressTextBox Grid.Row="4" Grid.Column="6" Grid.ColumnSpan="3"
+                Value="{Binding Adjustments.Tarmac}"
+                Minimum="{Binding Adjustments.MinimumDefault}"
+                Maximum="{Binding Adjustments.MaximumDefault}"
+                ToolTipText="{Binding Adjustments.RangeMessageDefault}">
+            <view:IntProgressTextBox.IsEnabled>
+                <MultiBinding Converter="{StaticResource AllTrueConverter}">
+                    <Binding Path="IsNoExclusiveCommandRunning"/>
+                    <Binding Path="Adjustments.IsPrimarySurfaceSet"/>
+                    <Binding Path="Adjustments.IsPrimarySurfaceTarmac"
+                        Converter="{StaticResource NotConverter}" />
+                </MultiBinding>
+            </view:IntProgressTextBox.IsEnabled>
+        </view:IntProgressTextBox>
+
+        <Button Grid.Row="5" Grid.Column="0"
+                Command="{Binding Commands.SetPrimarySurfaceNull}"
+                Content="{x:Static view:ViewTexts.SetPrimarySurfaceNullButton}"
+                Margin="8 0 0 0" />
+        <Rectangle Style="{StaticResource GroupingBarHorizontal}"
+                Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="8" />
+        <RadioButton Grid.Row="5" Grid.Column="1"
+                GroupName="PrimarySurface"
+                Style="{StaticResource ComboBoxSurface}"
+                IsChecked="{Binding Adjustments.IsPrimarySurfaceSnow}">
+            <Label Content="{x:Static view:ViewTexts.SurfaceSnowLabel}"
+                    Style="{StaticResource RowHeaderSecondary}"
+                    Grid.Row="5" Grid.Column="1" />
+        </RadioButton>
+        <view:IntProgressTextBox Grid.Row="5" Grid.Column="2"
+                Value="{Binding PrimaryTemplate.FfbSensSnow, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                Minimum="{Binding FfbSensMinimum}"
+                Maximum="{Binding FfbSensMaximum}"
+                ToolTipText="{Binding FfbSensRangeMessage}">
+            <view:IntProgressTextBox.IsEnabled>
+                <MultiBinding Converter="{StaticResource AllTrueConverter}">
+                    <Binding Path="IsNoExclusiveCommandRunning" />
+                    <Binding Path="Adjustments.IsPrimarySurfaceSnowOrNull" />
+                </MultiBinding>
+            </view:IntProgressTextBox.IsEnabled>
+        </view:IntProgressTextBox>
+        <view:IntProgressTextBox Grid.Row="5" Grid.Column="4"
+                Value="{Binding SecondaryTemplate.FfbSensSnow, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                Minimum="{Binding FfbSensMinimum}"
+                Maximum="{Binding FfbSensMaximum}"
+                ToolTipText="{Binding FfbSensRangeMessage}">
+            <view:IntProgressTextBox.IsEnabled>
+                <MultiBinding Converter="{StaticResource AllTrueConverter}">
+                    <Binding Path="IsNoExclusiveCommandRunning" />
+                    <Binding Path="Adjustments.IsPrimarySurfaceSnowOrNull" />
+                </MultiBinding>
+            </view:IntProgressTextBox.IsEnabled>
+        </view:IntProgressTextBox>
+        <view:IntProgressTextBox Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="3"
+                Value="{Binding Adjustments.Snow}"
+                Minimum="{Binding Adjustments.MinimumDefault}"
+                Maximum="{Binding Adjustments.MaximumDefault}"
+                ToolTipText="{Binding Adjustments.RangeMessageDefault}">
+            <view:IntProgressTextBox.IsEnabled>
+                <MultiBinding Converter="{StaticResource AllTrueConverter}">
+                    <Binding Path="IsNoExclusiveCommandRunning"/>
+                    <Binding Path="Adjustments.IsPrimarySurfaceSet" />
+                    <Binding Path="Adjustments.IsPrimarySurfaceSnow"
+                        Converter="{StaticResource NotConverter}" />
+                </MultiBinding>
+            </view:IntProgressTextBox.IsEnabled>
+        </view:IntProgressTextBox>
+
+        <Label Style="{StaticResource RowHeader}"
+                Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <TextBlock Text="{x:Static view:ViewTexts.LockToLockRotationLabel}"
+                    TextAlignment="Right" />
+        </Label>
+        <Slider Grid.Row="6" Grid.Column="2"
+                Style="{StaticResource SliderLockToLockRotation}"
+                Minimum="{Binding LockToLockRotationMinimumForSlider}"
+                Maximum="{Binding LockToLockRotationMaximumForSlider}"
+                Ticks="{Binding LockToLockRotationsForSlider, ElementName=RootElement}"
+                Value="{Binding PrimaryTemplate.LockToLockRotationForSlider}"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+        <Slider Grid.Row="6" Grid.Column="4"
+                Style="{StaticResource SliderLockToLockRotation}"
+                Minimum="{Binding LockToLockRotationMinimumForSlider}"
+                Maximum="{Binding LockToLockRotationMaximumForSlider}"
+                Ticks="{Binding LockToLockRotationsForSlider, ElementName=RootElement}"
+                Value="{Binding SecondaryTemplate.LockToLockRotationForSlider}"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+
+        <ComboBox Grid.Row="7" Grid.Column="2"
+                ItemsSource="{Binding LockToLockRotations}"
+                SelectedValue="{Binding PrimaryTemplate.LockToLockRotation}"
+                SelectedValuePath="IntValue"
+                DisplayMemberPath="Text"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Right"
+                Margin="4,1,4,2"
+                Width="60"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+        <ComboBox Grid.Row="7" Grid.Column="4"
+                ItemsSource="{Binding LockToLockRotations}"
+                SelectedValue="{Binding SecondaryTemplate.LockToLockRotation}"
+                SelectedValuePath="IntValue"
+                DisplayMemberPath="Text"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Right"
+                Margin="4,1,4,2"
+                Width="60"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+        <view:IntProgressTextBox Grid.Row="7" Grid.Column="6"
+                HorizontalAlignment="Right"
+                Value="{Binding Adjustments.LockToLockRotationRatio}"
+                Minimum="{Binding Adjustments.MinimumRatio}"
+                Maximum="{Binding Adjustments.MaximumRatio}"
+                ToolTipText="{Binding Adjustments.RangeMessageRatio}"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}"
+                KeyUp="Ratio_KeyUp" />
+        <Slider Grid.Row="7" Grid.Column="8" Grid.RowSpan="2"
+                HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                Orientation="Vertical" Ticks="50" TickPlacement="TopLeft"
+                KeyUp="Ratio_KeyUp"
+                Minimum="{Binding Adjustments.MinimumRatio}"
+                Maximum="{Binding Adjustments.MaximumRatio}"
+                Value="{Binding Adjustments.LockToLockRotationRatio}" />
+
+        <Label Content="{x:Static view:ViewTexts.WeightLabel}"
+                Style="{StaticResource RowHeader}"
+                Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" />
+        <TextBox Grid.Row="8" Grid.Column="2" Style="{StaticResource TextBoxWeight}"
+                Text="{Binding PrimaryTemplate.WeightKg}"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+        <TextBox Grid.Row="8" Grid.Column="4" Style="{StaticResource TextBoxWeight}"
+                Text="{Binding SecondaryTemplate.WeightKg}"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+        <view:IntProgressTextBox Grid.Row="8" Grid.Column="6"
+                HorizontalAlignment="Right"
+                Value="{Binding Adjustments.WeightRatio}"
+                Minimum="{Binding Adjustments.MinimumRatio}"
+                Maximum="{Binding Adjustments.MaximumRatio}"
+                ToolTipText="{Binding Adjustments.RangeMessageRatio}"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}"
+                KeyUp="Ratio_KeyUp" />
+
+        <Rectangle Style="{StaticResource GroupingBarSecondary}"
+                Grid.Row="9" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="9" />
+        <Label Content="{x:Static view:ViewTexts.DrivetrainLabel}"
+                Style="{StaticResource RowHeader}" HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Grid.Row="9" Grid.Column="0" />
+        <Rectangle Style="{StaticResource GroupingBarHorizontal}"
+                Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="8" />
+        <Label Content="{x:Static view:ViewTexts.DrivetrainFwdLabel}"
+                Style="{StaticResource RowHeaderSecondary}"
+                Grid.Row="9" Grid.Column="1" />
+        <RadioButton Grid.Row="9" Grid.Column="2"
+                GroupName="DrivetrainPrimary"
+                Style="{StaticResource ComboBoxDrivetrain}"
+                IsChecked="{Binding PrimaryTemplate.IsDrivetrainFwd}"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+        <RadioButton Grid.Row="9" Grid.Column="4"
+                GroupName="DrivetrainSecondary"
+                Style="{StaticResource ComboBoxDrivetrain}"
+                IsChecked="{Binding SecondaryTemplate.IsDrivetrainFwd}"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+        <view:IntProgressTextBox Grid.Row="9" Grid.Column="6" Grid.ColumnSpan="3"
+                Value="{Binding Adjustments.Fwd, Mode=TwoWay}"
+                Minimum="{Binding Adjustments.MinimumDefault}"
+                Maximum="{Binding Adjustments.MaximumDefault}"
+                ToolTipText="{Binding Adjustments.RangeMessageDefault}"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+
+        <Rectangle Style="{StaticResource GroupingBarHorizontal}"
+                Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="8" />
+        <Label Content="{x:Static view:ViewTexts.DrivetrainRwdLabel}"
+                Style="{StaticResource RowHeaderSecondary}"
+                Grid.Row="10" Grid.Column="1" />
+        <RadioButton Grid.Row="10" Grid.Column="2"
+                GroupName="DrivetrainPrimary"
+                Style="{StaticResource ComboBoxDrivetrain}"
+                IsChecked="{Binding PrimaryTemplate.IsDrivetrainRwd}"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+        <RadioButton Grid.Row="10" Grid.Column="4"
+                GroupName="DrivetrainSecondary"
+                Style="{StaticResource ComboBoxDrivetrain}"
+                IsChecked="{Binding SecondaryTemplate.IsDrivetrainRwd}"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+        <view:IntProgressTextBox Grid.Row="10" Grid.Column="6" Grid.ColumnSpan="3"
+                Value="{Binding Adjustments.Rwd}"
+                Minimum="{Binding Adjustments.MinimumDefault}"
+                Maximum="{Binding Adjustments.MaximumDefault}"
+                ToolTipText="{Binding Adjustments.RangeMessageDefault}"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+
+        <Rectangle Style="{StaticResource GroupingBarHorizontal}"
+                Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="8" />
+        <Label Content="{x:Static view:ViewTexts.DrivetrainAwdLabel}"
+                Style="{StaticResource RowHeaderSecondary}"
+                Grid.Row="11" Grid.Column="1" />
+        <RadioButton Grid.Row="11" Grid.Column="2"
+                GroupName="DrivetrainPrimary"
+                Style="{StaticResource ComboBoxDrivetrain}"
+                IsChecked="{Binding PrimaryTemplate.IsDrivetrainAwd}"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+        <RadioButton Grid.Row="11" Grid.Column="4"
+                GroupName="DrivetrainSecondary"
+                Style="{StaticResource ComboBoxDrivetrain}"
+                IsChecked="{Binding SecondaryTemplate.IsDrivetrainAwd}"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+        <view:IntProgressTextBox Grid.Row="11" Grid.Column="6" Grid.ColumnSpan="3"
+                Value="{Binding Adjustments.Awd}"
+                Minimum="{Binding Adjustments.MinimumDefault}"
+                Maximum="{Binding Adjustments.MaximumDefault}"
+                ToolTipText="{Binding Adjustments.RangeMessageDefault}"
+                IsEnabled="{Binding IsNoExclusiveCommandRunning}" />
+
+
+        <Grid Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="9"
+                Margin="0,15,0,0"
+                VerticalAlignment="Center" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Content="{Binding VersionText}" HorizontalAlignment="Left" />
+            <Label Content="{x:Static view:ViewTexts.PersonalSettingsLabel}"
+                    Style="{StaticResource RowHeader}"
+                    Grid.Column="2" />
+            <Button Content="{x:Static view:ViewTexts.PersonalSettingsExportButton}"
+                    Grid.Column="4" Command="{Binding Commands.ExportCars}" />
+            <Button Content="{x:Static view:ViewTexts.PersonalSettingsImportButton}"
+                    Grid.Column="6" Command="{Binding Commands.ImportCars}" />
+            <Button Content="{x:Static view:ViewTexts.ClearFfbSensButton}"
+                    Grid.Column="8" Command="{Binding Commands.ClearFfbSens}" />
+        </Grid>
+    </Grid>
+</UserControl>

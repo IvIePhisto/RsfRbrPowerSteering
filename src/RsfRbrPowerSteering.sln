@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RsfRbrPowerSteering", "RsfRbrPowerSteering\RsfRbrPowerSteering.csproj", "{F3F14EFC-B643-411D-8D2A-573289BCAC15}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RsfRbrPowerSteering.Model", "RsfRbrPowerSteering.Model\RsfRbrPowerSteering.Model.csproj", "{FC4AD4E8-7F74-4B13-8F19-A9CC491F460B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{D8BC252A-20A8-4CF9-8C37-2BB761554085}"
+	ProjectSection(SolutionItems) = preProject
+		Testing\rallysimfans_personal.ini = Testing\rallysimfans_personal.ini
+		Testing\RsfRbrPowerSteering.json = Testing\RsfRbrPowerSteering.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RsfRbrPowerSteering.ViewModel", "RsfRbrPowerSteering.ViewModel\RsfRbrPowerSteering.ViewModel.csproj", "{A881EE35-63A8-472C-BE3F-E8151E49C44C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RsfRbrPowerSteering.Settings", "RsfRbrPowerSteering.Settings\RsfRbrPowerSteering.Settings.csproj", "{86E8E0D4-DFDD-4DDA-A709-D27E4C0A3737}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3F14EFC-B643-411D-8D2A-573289BCAC15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3F14EFC-B643-411D-8D2A-573289BCAC15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3F14EFC-B643-411D-8D2A-573289BCAC15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3F14EFC-B643-411D-8D2A-573289BCAC15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC4AD4E8-7F74-4B13-8F19-A9CC491F460B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC4AD4E8-7F74-4B13-8F19-A9CC491F460B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC4AD4E8-7F74-4B13-8F19-A9CC491F460B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC4AD4E8-7F74-4B13-8F19-A9CC491F460B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A881EE35-63A8-472C-BE3F-E8151E49C44C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A881EE35-63A8-472C-BE3F-E8151E49C44C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A881EE35-63A8-472C-BE3F-E8151E49C44C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A881EE35-63A8-472C-BE3F-E8151E49C44C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86E8E0D4-DFDD-4DDA-A709-D27E4C0A3737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86E8E0D4-DFDD-4DDA-A709-D27E4C0A3737}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86E8E0D4-DFDD-4DDA-A709-D27E4C0A3737}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86E8E0D4-DFDD-4DDA-A709-D27E4C0A3737}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC65BF60-502E-404A-9A5B-90A178DE9408}
+	EndGlobalSection
+EndGlobal

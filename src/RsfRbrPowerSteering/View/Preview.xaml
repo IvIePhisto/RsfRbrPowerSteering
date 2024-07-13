@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="RsfRbrPowerSteering.View.Preview"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+    xmlns:view="clr-namespace:RsfRbrPowerSteering.View"
+    mc:Ignorable="d" 
+    d:DesignHeight="450" d:DesignWidth="300"
+    x:Name="RootElement">
+
+    <UserControl.Resources>
+        <CollectionViewSource Source="{Binding Cars}" x:Key="CarsWithoutDefault"
+            Filter="FilterCarIsNotDefault"
+            IsLiveSortingRequested="True">
+            
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="Name" />
+                <scm:SortDescription PropertyName="Drivetrain" />
+                <scm:SortDescription PropertyName="LockToLockRotation" />
+                <scm:SortDescription PropertyName="WeightKg" />
+                <scm:SortDescription PropertyName="FfbSensCalculated.Gravel" />
+                <scm:SortDescription PropertyName="FfbSensCalculated.Tarmac" />
+                <scm:SortDescription PropertyName="FfbSensCalculated.Snow" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+    </UserControl.Resources>
+    
+    <Grid x:Name="Grid" HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition MinWidth="10"/>
+                <ColumnDefinition Width="Auto" MinWidth="80"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0"
+                HorizontalAlignment="Stretch"
+                Content="{x:Static view:ViewTexts.PreviewTitleLabel}"
+                FontSize="18"
+                FontWeight="Bold"/>
+            
+            <Button Grid.Row="2"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                FontSize="18"
+                FontWeight="Bold"
+                Content="{x:Static view:ViewTexts.PersonalSettingsApplyButton}"
+                Grid.Column="10" Command="{Binding Commands.ApplyScaling}" />
+        </Grid>
+
+        <DataGrid Grid.Row="1"
+            HorizontalScrollBarVisibility="Auto"
+            ItemsSource="{Binding Source={StaticResource CarsWithoutDefault}}"
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            CanUserReorderColumns="False"
+            CanUserResizeColumns="False"
+            CanUserDeleteRows="False"
+            CanUserAddRows="False"
+            CanUserResizeRows="False">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}"
+                        Header="{x:Static view:ViewTexts.ColumnNameName}"
+                        SortDirection="Ascending"
+                        ElementStyle="{StaticResource DataGridColumnName}"/>
+                <DataGridTextColumn
+                        Binding="{Binding Drivetrain, Converter={StaticResource UpperTextConverter}}"
+                        Header="{x:Static view:ViewTexts.ColumnNameDrivetrain}"
+                        ElementStyle="{StaticResource DatagGridColumnDrivetrain}"/>
+                <DataGridTextColumn Binding="{Binding LockToLockRotation}"
+                        Header="{x:Static view:ViewTexts.ColumnNameLockToLockRotation}"
+                        ElementStyle="{StaticResource DataGridColumnNumber}" />
+                <DataGridTextColumn Binding="{Binding WeightKg}"
+                        Header="{x:Static view:ViewTexts.ColumnNameWeight}"
+                        ElementStyle="{StaticResource DataGridColumnNumber}" />
+                <DataGridTextColumn Binding="{Binding FfbSensCalculated.Gravel}"
+                        Header="{x:Static view:ViewTexts.ColumnNameFfbSensCalculatedGravel}"
+                        ElementStyle="{StaticResource DataGridColumnNumber}" />
+                <DataGridTextColumn Binding="{Binding FfbSensCalculated.Tarmac}"
+                        Header="{x:Static view:ViewTexts.ColumnNameFfbSensCalculatedTarmac}"
+                        ElementStyle="{StaticResource DataGridColumnNumber}" />
+                <DataGridTextColumn Binding="{Binding FfbSensCalculated.Snow}"
+                        Header="{x:Static view:ViewTexts.ColumnNameFfbSensCalculatedSnow}"
+                        ElementStyle="{StaticResource DataGridColumnNumber}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

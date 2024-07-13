@@ -1,0 +1,89 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="Label" x:Key="RowHeader">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Margin" Value="4 0" />
+    </Style>
+    <Style TargetType="Label" BasedOn="{StaticResource RowHeader}" x:Key="RowHeaderSecondary">
+        <Setter Property="FontWeight" Value="Normal" />
+    </Style>
+    <Style TargetType="Label" x:Key="ColumnHeader">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+    <Style TargetType="Button">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Padding" Value="5,2" />
+    </Style>
+    <Style TargetType="ComboBox">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="4,2" />
+    </Style>
+    <Style TargetType="RadioButton" x:Key="ComboBoxSurface">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="4 0" />
+    </Style>
+    <Style TargetType="RadioButton" x:Key="ComboBoxDrivetrain">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="TextBox" x:Key="TextBoxWeight">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="Margin" Value="4,2" />
+        <Setter Property="Width" Value="42" />
+    </Style>
+    <Style TargetType="Rectangle" x:Key="GroupingBarHorizontal">
+        <Setter Property="Fill" Value="DarkSlateBlue" />
+        <Setter Property="Opacity" Value=".1" />
+        <Setter Property="Margin" Value="0,2" />
+        <Setter Property="Panel.ZIndex" Value="-1" />
+        <Setter Property="Height" Value="28" />
+    </Style>
+    <Style TargetType="Rectangle" x:Key="GroupingBarVertical">
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Panel.ZIndex" Value="-3" />
+        <Setter Property="RadiusX" Value="4" />
+        <Setter Property="RadiusY" Value="4" />
+    </Style>
+    <Style TargetType="Rectangle" x:Key="GroupingBarSecondary">
+        <Setter Property="Stroke" Value="DimGray"/>
+        <Setter Property="Panel.ZIndex" Value="-3" />
+        <Setter Property="RadiusX" Value="4" />
+        <Setter Property="RadiusY" Value="4" />
+    </Style>
+    <Style TargetType="Slider" x:Key="SliderLockToLockRotation">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="4,12,4,2" />
+        <Setter Property="TickPlacement" Value="BottomRight" />
+        <Setter Property="IsSnapToTickEnabled" Value="True" />
+    </Style>
+    <Style TargetType="StackPanel">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="4,2" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="DataGridColumnName">
+        <Setter Property="Padding" Value="4 2"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="DatagGridColumnDrivetrain"
+        BasedOn="{StaticResource DataGridColumnName}">
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="DataGridColumnNumber"
+        BasedOn="{StaticResource DataGridColumnName}">
+        <Setter Property="TextAlignment" Value="Right"/>
+        <Setter Property="Padding" Value="4 2"/>
+    </Style>
+</ResourceDictionary>

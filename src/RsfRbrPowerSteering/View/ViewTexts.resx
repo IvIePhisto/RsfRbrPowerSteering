@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AdjustmentsLabel" xml:space="preserve">
+    <value>Adjustments [%]</value>
+  </data>
+  <data name="CarLabel" xml:space="preserve">
+    <value>Car</value>
+  </data>
+  <data name="CarPrimaryLabel" xml:space="preserve">
+    <value>Primary</value>
+  </data>
+  <data name="CarSecondaryLabel" xml:space="preserve">
+    <value>Secondary</value>
+  </data>
+  <data name="CarsReloadButton" xml:space="preserve">
+    <value>_Reload Cars</value>
+  </data>
+  <data name="ClearFfbSensButton" xml:space="preserve">
+    <value>_Clear</value>
+  </data>
+  <data name="ColumnNameDrivetrain" xml:space="preserve">
+    <value>Drivetrain</value>
+  </data>
+  <data name="ColumnNameFfbSensCalculatedGravel" xml:space="preserve">
+    <value>FFB Sens
+Gravel</value>
+  </data>
+  <data name="ColumnNameFfbSensCalculatedSnow" xml:space="preserve">
+    <value>FFB Sens
+Snow</value>
+  </data>
+  <data name="ColumnNameFfbSensCalculatedTarmac" xml:space="preserve">
+    <value>FFB Sens
+Tarmac</value>
+  </data>
+  <data name="ColumnNameLockToLockRotation" xml:space="preserve">
+    <value>Steering
+Lock-to-lock
+Rotation [°]</value>
+  </data>
+  <data name="ColumnNameName" xml:space="preserve">
+    <value>Car</value>
+  </data>
+  <data name="ColumnNameWeight" xml:space="preserve">
+    <value>Weight [kg]</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>This utility is for Richard Burns Rally (RBR) as distributed by RallySimFan.hu (RSF). It allows to set the force-feedback (FFB) sensitivity for all cars that you have driven previously, based on the lock-to-lock rotation of the steering wheel and/or the vehicle weight. Additional scaling can be applied depending on drive-train and surface.
+Set the FFB sensitivity for each surface for two lock-to-lock rotations and/or weights, or select two cars that have personal settings (in the RSF launcher under "My Cars" set "FFB sensitivity range"). It is recommended to take a backup of your personal FFB settings by exporting before applying new settings.</value>
+  </data>
+  <data name="DrivetrainAwdLabel" xml:space="preserve">
+    <value>AWD</value>
+  </data>
+  <data name="DrivetrainFwdLabel" xml:space="preserve">
+    <value>FWD</value>
+  </data>
+  <data name="DrivetrainLabel" xml:space="preserve">
+    <value>Drivetrain</value>
+  </data>
+  <data name="DrivetrainRwdLabel" xml:space="preserve">
+    <value>RWD</value>
+  </data>
+  <data name="EmptyValueError" xml:space="preserve">
+    <value>Please enter a whole number.</value>
+  </data>
+  <data name="LockToLockRotationLabel" xml:space="preserve">
+    <value>Steering Lock-to-Lock
+Rotation [°]</value>
+  </data>
+  <data name="MissingFilesError" xml:space="preserve">
+    <value>The following files could not be found:
+{1}
+
+Please make sure the working directory is the directory of your RallySimFans.hu Richard Burns Rally installation. The easiest way is to place the executable in this directory.
+
+Current directory: {0}</value>
+  </data>
+  <data name="PersonalSettingsApplyButton" xml:space="preserve">
+    <value>_Apply</value>
+  </data>
+  <data name="PersonalSettingsExportButton" xml:space="preserve">
+    <value>_Export</value>
+  </data>
+  <data name="PersonalSettingsImportButton" xml:space="preserve">
+    <value>_Import</value>
+  </data>
+  <data name="PersonalSettingsLabel" xml:space="preserve">
+    <value>Personal Car Settings</value>
+  </data>
+  <data name="PreviewTitleLabel" xml:space="preserve">
+    <value>Preview of Personal Settings</value>
+  </data>
+  <data name="ResetToDefaultsButton" xml:space="preserve">
+    <value>_Reset to Defaults</value>
+  </data>
+  <data name="SetPrimarySurfaceNullButton" xml:space="preserve">
+    <value>_Individual</value>
+  </data>
+  <data name="SurfaceGravelLabel" xml:space="preserve">
+    <value>Gravel</value>
+  </data>
+  <data name="SurfaceLabel" xml:space="preserve">
+    <value>FFB Sensitivity</value>
+  </data>
+  <data name="SurfaceSnowLabel" xml:space="preserve">
+    <value>Snow</value>
+  </data>
+  <data name="SurfaceTarmaclLabel" xml:space="preserve">
+    <value>Tarmac</value>
+  </data>
+  <data name="UnexpectedExceptionErrorFormat" xml:space="preserve">
+    <value>An unexpected problem occurred: {0}</value>
+  </data>
+  <data name="WeightLabel" xml:space="preserve">
+    <value>Weight [kg]</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>RSF RBR Power Steering</value>
+  </data>
+</root>

@@ -1,0 +1,44 @@
+﻿<Window x:Class="RsfRbrPowerSteering.View.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:RsfRbrPowerSteering.View"
+    xmlns:viewModel="clr-namespace:RsfRbrPowerSteering.ViewModel;assembly=RsfRbrPowerSteering.ViewModel"
+    xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+    mc:Ignorable="d"
+    Title="{x:Static view:ViewTexts.WindowTitle}"
+    Width="1300" Height="800" MinHeight="700" MinWidth="900"
+    WindowStartupLocation="CenterScreen"
+    ResizeMode="CanResizeWithGrip"
+    Background="WhiteSmoke"
+    x:Name="RootElement"
+    d:DataContext="{d:DesignInstance viewModel:MainViewModel}">
+
+    <behaviors:Interaction.Triggers>
+        <behaviors:EventTrigger EventName="SourceInitialized"
+            SourceObject="{Binding ElementName=RootElement}">
+            <behaviors:InvokeCommandAction Command="{Binding Commands.Load}" />
+        </behaviors:EventTrigger>
+        <behaviors:EventTrigger EventName="Closing"
+            SourceObject="{Binding ElementName=RootElement}">
+            <behaviors:InvokeCommandAction Command="{Binding Commands.Exit}" />
+        </behaviors:EventTrigger>
+    </behaviors:Interaction.Triggers>
+
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="500" />
+            <ColumnDefinition Width="10" MaxWidth="10" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <view:Editor Grid.Column="0"/>
+        <GridSplitter Grid.Column="1"
+            ResizeDirection="Columns"
+            ResizeBehavior="PreviousAndNext"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch" />
+        <view:Preview Grid.Column="2"/>
+    </Grid>
+</Window>
