@@ -4,7 +4,7 @@ namespace RsfRbrPowerSteering.Settings;
 
 public class RootSettings
 {
-    private static readonly FileInfo SettingsFile = new FileInfo($"{nameof(RsfRbrPowerSteering)}.json");
+    public static readonly FileInfo SettingsFile = new FileInfo($"{nameof(RsfRbrPowerSteering)}.json");
 
     public static async Task<RootSettings?> LoadAsync()
     {
