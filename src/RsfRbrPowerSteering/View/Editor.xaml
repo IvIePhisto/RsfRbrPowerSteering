@@ -42,8 +42,8 @@
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
-            <RowDefinition SharedSizeGroup="LockToLockRotation" />
-            <RowDefinition SharedSizeGroup="LockToLockRotation" />
+            <RowDefinition SharedSizeGroup="LockToLockRotation" MinHeight="40" />
+            <RowDefinition SharedSizeGroup="LockToLockRotation" MinHeight="40" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />

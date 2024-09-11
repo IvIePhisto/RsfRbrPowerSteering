@@ -1,8 +1,12 @@
 {
   "profiles": {
-    "RsfRbrFfbSensScaler": {
+    "RsfRbrFfbSensScaler Standard": {
       "commandName": "Project",
-      "workingDirectory": "..\\Testing"
+      "workingDirectory": "..\\Testing\\standard"
+    },
+    "RsfRbrFfbSensScaler Import Error": {
+      "commandName": "Project",
+      "workingDirectory": "..\\Testing\\import-error"
     }
   }
 }

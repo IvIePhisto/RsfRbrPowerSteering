@@ -7,15 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RsfRbrPowerSteering", "RsfR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RsfRbrPowerSteering.Model", "RsfRbrPowerSteering.Model\RsfRbrPowerSteering.Model.csproj", "{FC4AD4E8-7F74-4B13-8F19-A9CC491F460B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{D8BC252A-20A8-4CF9-8C37-2BB761554085}"
-	ProjectSection(SolutionItems) = preProject
-		Testing\rallysimfans_personal.ini = Testing\rallysimfans_personal.ini
-		Testing\RsfRbrPowerSteering.json = Testing\RsfRbrPowerSteering.json
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RsfRbrPowerSteering.ViewModel", "RsfRbrPowerSteering.ViewModel\RsfRbrPowerSteering.ViewModel.csproj", "{A881EE35-63A8-472C-BE3F-E8151E49C44C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RsfRbrPowerSteering.ViewModel", "RsfRbrPowerSteering.ViewModel\RsfRbrPowerSteering.ViewModel.csproj", "{A881EE35-63A8-472C-BE3F-E8151E49C44C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RsfRbrPowerSteering.Settings", "RsfRbrPowerSteering.Settings\RsfRbrPowerSteering.Settings.csproj", "{86E8E0D4-DFDD-4DDA-A709-D27E4C0A3737}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RsfRbrPowerSteering.Settings", "RsfRbrPowerSteering.Settings\RsfRbrPowerSteering.Settings.csproj", "{86E8E0D4-DFDD-4DDA-A709-D27E4C0A3737}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

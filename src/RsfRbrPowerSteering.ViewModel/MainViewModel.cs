@@ -37,7 +37,7 @@ public class MainViewModel : NotifyPropertyChangedBase
             ViewModelTexts.VersionTextFormat,
             version?.Major,
             version?.Minor,
-            version?.Revision);
+            version?.Build);
     }
 
     public event Action? LockToLockRotationsChanged;
