@@ -27,8 +27,8 @@ public class CarViewModel : NotifyPropertyChangedBase
         Name = car.Name;
         WeightKg = car.WeightKg;
         LockToLockRotation = car.LockToLockRotation;
-        UpdateDescription();
         Drivetrain = car.Drivetrain;
+        UpdateDescription();
     }
 
     public int Id { get; }

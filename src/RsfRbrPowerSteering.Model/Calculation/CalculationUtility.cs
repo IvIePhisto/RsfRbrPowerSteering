@@ -40,8 +40,6 @@ public static class CalculationUtility
         {
             decimal drivetrainA = drivetrainFactors[carA.Drivetrain];
             decimal drivetrainB = drivetrainFactors[carB.Drivetrain];
-            const bool makeFirstGreaterLockToLockRotation = false;
-            const bool makeFirstGreatWeight = !makeFirstGreaterLockToLockRotation;
             ParametersLockToLockRotationGravel = new Parameters(
                 carA.FfbSens.Gravel,
                 carB.FfbSens.Gravel,
