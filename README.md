@@ -18,25 +18,13 @@ If you want to share the utility between different installations put it anywhere
 
 ### Usage
 
-Start the executable, the working directory has to be your RSF RBR directory.
+Start the executable; the working directory has to be your RSF RBR directory.
 
 For sharing the same executable between different installations you can create one shortcut to the utility per installation, setting the working directory to each installation directory respectively.
 
-## Development
+## Contribution
 
-### Possible Improvements
-
-- Exporting and importing settings.
-- Support drag & drop from car grid to primary and secondary car.
-- Highlight primary and secondary car in car grid.
-- Translations with function to change language.
-- Persist window location and size.
-- Improve icon.
-- Create installer using WiX.
-
-### Contribution
-
-Reporting bugs and making suggestions through GitHub is appreciated. Pull requests will be considered.
+Reporting issues for bugs and feature requests through GitHub is appreciated. Pull requests will gladly be considered.
 
 ## License
 

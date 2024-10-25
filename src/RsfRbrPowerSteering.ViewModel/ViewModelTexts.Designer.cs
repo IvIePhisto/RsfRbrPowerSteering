@@ -61,11 +61,20 @@ namespace RsfRbrPowerSteering.ViewModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to apply scaling? This will overwrite any existing personal FFB settings for the existing cars..
+        ///   Looks up a localized string similar to Do you really want to apply scaling to all cars? This will overwrite any existing personal FFB settings..
         /// </summary>
-        internal static string ApplyScalingConfirmation {
+        internal static string ApplyScalingConfirmationAllCars {
             get {
-                return ResourceManager.GetString("ApplyScalingConfirmation", resourceCulture);
+                return ResourceManager.GetString("ApplyScalingConfirmationAllCars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to apply scaling to {0}? This will overwrite any existing personal FFB settings for this car..
+        /// </summary>
+        internal static string ApplyScalingConfirmationSingleCarFormat {
+            get {
+                return ResourceManager.GetString("ApplyScalingConfirmationSingleCarFormat", resourceCulture);
             }
         }
         
@@ -142,11 +151,20 @@ namespace RsfRbrPowerSteering.ViewModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Version: {0}.{1}.{2}.
+        ///   Looks up a localized string similar to {0}.{1}.{2}.
         /// </summary>
         internal static string VersionTextFormat {
             get {
                 return ResourceManager.GetString("VersionTextFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RSF RBR Power Steering {0}.
+        /// </summary>
+        internal static string WindowTitleFormat {
+            get {
+                return ResourceManager.GetString("WindowTitleFormat", resourceCulture);
             }
         }
     }

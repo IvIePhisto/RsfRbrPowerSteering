@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApplyScalingConfirmation" xml:space="preserve">
-    <value>Do you really want to apply scaling? This will overwrite any existing personal FFB settings for the existing cars.</value>
+  <data name="ApplyScalingConfirmationAllCars" xml:space="preserve">
+    <value>Do you really want to apply scaling to all cars? This will overwrite any existing personal FFB settings.</value>
   </data>
   <data name="CarsFileDialogFilter" xml:space="preserve">
     <value>JSON File (*.json)|*.json</value>
@@ -145,6 +145,12 @@
     <value>Please enter a value.</value>
   </data>
   <data name="VersionTextFormat" xml:space="preserve">
-    <value>Version: {0}.{1}.{2}</value>
+    <value>{0}.{1}.{2}</value>
+  </data>
+  <data name="WindowTitleFormat" xml:space="preserve">
+    <value>RSF RBR Power Steering {0}</value>
+  </data>
+  <data name="ApplyScalingConfirmationSingleCarFormat" xml:space="preserve">
+    <value>Do you really want to apply scaling to {0}? This will overwrite any existing personal FFB settings for this car.</value>
   </data>
 </root>

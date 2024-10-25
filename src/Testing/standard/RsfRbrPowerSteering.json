@@ -1,5 +1,6 @@
 {
   "IsDescriptionVisible": false,
+  "TargetCarId": 41,
   "PrimaryCar": {
     "SelectedCarId": 105,
     "WeightKg": 1349,

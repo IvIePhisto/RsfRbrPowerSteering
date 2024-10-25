@@ -21,6 +21,11 @@
                 <scm:SortDescription PropertyName="Name" />
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
+        <CollectionViewSource Source="{Binding Cars}" x:Key="TargetCars">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="Name" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
     </UserControl.Resources>
     
     <Grid>
@@ -60,18 +65,20 @@
                     Visibility="{Binding IsDescriptionVisible, Converter={StaticResource BooleanToVisibility}}"
                     Text="{x:Static view:ViewTexts.Description}" TextAlignment="Left"
                     TextWrapping="Wrap" />
-            <Button Grid.Column="1"
+            <ToggleButton Grid.Column="1"
                     FontFamily="Segoe UI Symbol" Content="&#xE11B;" VerticalAlignment="Top"
-                    Command="{Binding Commands.ToggleDescriptionVisibility}"
+                    IsChecked="{Binding IsDescriptionVisible}"
                     Margin="0,0,0,4"
+                    ToolTip="{x:Static view:ViewTexts.DescriptionToggleButtonToolTip}"
                     Visibility="{Binding IsDescriptionVisible, Converter={StaticResource BooleanToVisibility}}" />
         </Grid>
 
-        <Button Grid.Row="1" Grid.Column="8"
+        <ToggleButton Grid.Row="1" Grid.Column="8"
                 FontFamily="Segoe UI Symbol" Content="&#xE11B;"
                 VerticalAlignment="Top" HorizontalAlignment="Right"
-                Command="{Binding Commands.ToggleDescriptionVisibility}"
+                IsChecked="{Binding IsDescriptionVisible}"
                 Margin="0,0,0,4"
+                ToolTip="{x:Static view:ViewTexts.DescriptionToggleButtonToolTip}"
                 Visibility="{Binding IsDescriptionHidden, Converter={StaticResource BooleanToVisibility}}" />
 
         <Button Grid.Row="1" Grid.Column="0"
@@ -418,27 +425,69 @@
         <Grid Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="9"
                 Margin="0,15,0,0"
                 VerticalAlignment="Center" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="10" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="20" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="10" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Label Content="{Binding VersionText}" HorizontalAlignment="Left" />
-            <Label Content="{x:Static view:ViewTexts.PersonalSettingsLabel}"
-                    Style="{StaticResource RowHeader}"
-                    Grid.Column="2" />
-            <Button Content="{x:Static view:ViewTexts.PersonalSettingsExportButton}"
-                    Grid.Column="4" Command="{Binding Commands.ExportCars}" />
-            <Button Content="{x:Static view:ViewTexts.PersonalSettingsImportButton}"
-                    Grid.Column="6" Command="{Binding Commands.ImportCars}" />
-            <Button Content="{x:Static view:ViewTexts.ClearFfbSensButton}"
-                    Grid.Column="8" Command="{Binding Commands.ClearFfbSens}" />
+
+            <Label
+                Grid.Row="0" Grid.Column="0"
+                Content="{x:Static view:ViewTexts.PersonalSettingsLabel}"
+                FontWeight="Bold"
+                FontSize="16"/>
+            <ComboBox
+                Grid.Row="0" Grid.Column="2"
+                Grid.ColumnSpan="3"
+                Margin="0"
+                HorizontalAlignment="Right"
+                ItemsSource="{Binding Source={StaticResource TargetCars}}"
+                SelectedItem="{Binding TargetCar}"
+                SelectionChanged="TargetCar_SelectionChanged"
+                DisplayMemberPath="Description"
+                MinWidth="100"/>
+
+            <CheckBox
+                Grid.Row="1" Grid.Column="2"
+                VerticalContentAlignment="Center"
+                HorizontalAlignment="Right"
+                HorizontalContentAlignment="Right"
+                Content="{x:Static view:ViewTexts.PersonalSettingsTargetCarNoneCheckBox}"
+                IsChecked="{Binding TargetCarIsUnselected}"
+                IsEnabled="{Binding TargetCarIsSelected}"/>
+            <Button
+                Grid.Row="1" Grid.Column="4"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Stretch"
+                FontWeight="Bold"
+                Content="{x:Static view:ViewTexts.PersonalSettingsApplyButton}"
+                Command="{Binding Commands.ApplyScaling}" />
+
+            <StackPanel
+                Grid.Row="1" Grid.Column="0"
+                Orientation="Horizontal"
+                HorizontalAlignment="Left">
+                <Button
+                    Grid.Row="1" Grid.Column="0"
+                    Margin="0 0 10 0"
+                    Content="{x:Static view:ViewTexts.PersonalSettingsExportButton}"
+                    Command="{Binding Commands.ExportCars}" />
+                <Button
+                    Grid.Row="1" Grid.Column="2"
+                    Margin="0 0 10 0"
+                    Content="{x:Static view:ViewTexts.PersonalSettingsImportButton}"
+                    Command="{Binding Commands.ImportCars}" />
+                <Button
+                    Grid.Row="1" Grid.Column="4"
+                    Content="{x:Static view:ViewTexts.ClearFfbSensButton}"
+                    Command="{Binding Commands.ClearFfbSens}" />
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

@@ -1,6 +1,4 @@
 ﻿using RsfRbrPowerSteering.Model;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 
 namespace RsfRbrPowerSteering.ViewModel;
 

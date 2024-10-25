@@ -21,7 +21,14 @@ internal class ApplyScalingCommand(
 
     protected override async Task ExecuteExclusiveAsync(object? parameter)
     {
-        if (!_messageService.Ask(ViewModelTexts.ApplyScalingConfirmation))
+        string question =
+            MainViewModel.TargetCar == null
+            ? ViewModelTexts.ApplyScalingConfirmationAllCars
+            : string.Format(
+                ViewModelTexts.ApplyScalingConfirmationSingleCarFormat,
+                MainViewModel.TargetCar.Name);
+
+        if (!_messageService.Ask(question))
         {
             return;
         }

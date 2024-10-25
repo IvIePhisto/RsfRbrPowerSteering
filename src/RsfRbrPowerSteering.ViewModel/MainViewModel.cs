@@ -18,6 +18,7 @@ public class MainViewModel : NotifyPropertyChangedBase
     private bool _isExclusiveCommandRunning;
     private bool _isInformationVisible = true;
     private bool _isReCalcuationEnabled = false;
+    private CarViewModel? _targetCar;
 
     public MainViewModel(
         ICommandManager commandManager,
@@ -33,16 +34,18 @@ public class MainViewModel : NotifyPropertyChangedBase
         SecondaryTemplate = new CarTemplateViewModel(this);
         FfbSensRangeMessage = string.Format(ViewModelTexts.RangeMessageFormat, FfbSensMinimum, FfbSensMaximum);
         Version? version = Assembly.GetEntryAssembly()?.GetName()?.Version;
-        VersionText = string.Format(
-            ViewModelTexts.VersionTextFormat,
-            version?.Major,
-            version?.Minor,
-            version?.Build);
+        WindowTitle = string.Format(
+            ViewModelTexts.WindowTitleFormat,
+            string.Format(
+                ViewModelTexts.VersionTextFormat,
+                version?.Major,
+                version?.Minor,
+                version?.Build));
     }
 
     public event Action? LockToLockRotationsChanged;
 
-    public string VersionText { get; }
+    public string WindowTitle { get; }
     public int FfbSensMinimum { get; } = 10;
     public int FfbSensMaximum { get; } = 5000;
     public string FfbSensRangeMessage { get; }
@@ -52,7 +55,7 @@ public class MainViewModel : NotifyPropertyChangedBase
     {
         get => _isInformationVisible;
 
-        private set
+        set
         {
             _isInformationVisible = value;
             NotifyPropertyChanged();
@@ -118,6 +121,53 @@ public class MainViewModel : NotifyPropertyChangedBase
     }
 
     public bool IsNoExclusiveCommandRunning => !_isExclusiveCommandRunning;
+
+    public CarViewModel? TargetCar
+    {
+        get => _targetCar;
+        set
+        {
+            if (value == DefaultCar)
+            {
+                value = null;
+            }
+
+            if (_targetCar == value)
+            {
+                return;
+            }
+
+            bool isTargetCarIsSelectedChanged =
+                _targetCar == null && value != null
+                || _targetCar != null && value == null;
+            _targetCar = value;
+            NotifyPropertyChanged();
+
+            if (isTargetCarIsSelectedChanged)
+            {
+                NotifyPropertyChanged(nameof(TargetCarIsSelected));
+                NotifyPropertyChanged(nameof(TargetCarIsUnselected));
+            }
+        }
+    }
+
+    public bool TargetCarIsSelected => _targetCar != null;
+
+    public bool TargetCarIsUnselected
+    {
+        get
+        {
+            return _targetCar == null;
+        }
+
+        set
+        {
+            if (value && _targetCar != null)
+            {
+                TargetCar = null;
+            }
+        }
+    }
 
     private readonly Dictionary<int, CarViewModel> _carsById = new Dictionary<int, CarViewModel>();
     internal IReadOnlyDictionary<int, CarViewModel> CarsById => _carsById;
@@ -252,15 +302,15 @@ public class MainViewModel : NotifyPropertyChangedBase
         }
     }
 
-    private IReadOnlyDictionary<int, CarFfbSens> CalculateFfbSenses()
+    private IReadOnlyDictionary<int, CarFfbSens> CalculateFfbSenses(IEnumerable<CarInfo> carInfos)
     {
-        if (!_isReCalcuationEnabled || _carInfos == null)
+        if (!_isReCalcuationEnabled)
         {
             return new Dictionary<int, CarFfbSens>();
         }
 
         return CalculationUtility.CalculateFfbSenses(
-            _carInfos.Values,
+            carInfos,
             Adjustments.WeightRatio / 100M,
             new DrivetrainFactors(Adjustments.Fwd / 100M, Adjustments.Rwd / 100M, Adjustments.Awd / 100M),
             PrimaryTemplate.ToCalculationCar(),
@@ -269,12 +319,12 @@ public class MainViewModel : NotifyPropertyChangedBase
 
     internal void ReCalculate()
     {
-        if (!_isReCalcuationEnabled)
+        if (!_isReCalcuationEnabled || _carInfos == null)
         {
             return;
         }
 
-        IReadOnlyDictionary<int, CarFfbSens> ffbSenses = CalculateFfbSenses();
+        IReadOnlyDictionary<int, CarFfbSens> ffbSenses = CalculateFfbSenses(_carInfos.Values);
 
         foreach ((int id, CarFfbSens ffbSens) in ffbSenses)
         {
@@ -292,6 +342,11 @@ public class MainViewModel : NotifyPropertyChangedBase
         if (settings != null)
         {
             _isReCalcuationEnabled = false;
+            TargetCar = settings.TargetCarId.HasValue
+                ? _carsById.TryGetValue(settings.TargetCarId.Value, out CarViewModel? targetCar)
+                    ? targetCar
+                    : null
+                : null;
             IsDescriptionVisible = settings.IsDescriptionVisible;
             Adjustments.PrimarySurface = string.IsNullOrEmpty(settings.PrimarySurface)
                 ? null
@@ -315,6 +370,7 @@ public class MainViewModel : NotifyPropertyChangedBase
         await new RootSettings
             {
                 IsDescriptionVisible = IsDescriptionVisible,
+                TargetCarId = TargetCar?.Id,
                 PrimaryCar = PrimaryTemplate.ToSettings(),
                 SecondaryCar = SecondaryTemplate.ToSettings(),
                 PrimarySurface = Adjustments.PrimarySurface?.ToString() ?? string.Empty,
@@ -343,7 +399,10 @@ public class MainViewModel : NotifyPropertyChangedBase
         int primaryCarId = PrimaryTemplate.SelectedCarId;
         int secondaryCarId = SecondaryTemplate.SelectedCarId;
         _carInfos = await CarInfo.ReadCarsAsync();
-        IReadOnlyDictionary<int, CarFfbSens> ffbSenses = CalculateFfbSenses();
+        IEnumerable<CarInfo> carInfos = TargetCar == null
+            ? _carInfos.Values
+            : ([_carInfos[TargetCar.Id]]);
+        IReadOnlyDictionary<int, CarFfbSens> ffbSenses = CalculateFfbSenses(carInfos);
         _personalData.ReadFile();
         _personalData.ApplyFfbSens(ffbSenses.Select(kvp => (kvp.Key, kvp.Value.ToPersonal())));
         _personalData.WriteFile();
