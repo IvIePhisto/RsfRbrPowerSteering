@@ -193,7 +193,7 @@ Please make sure the working directory is the directory of your RallySimFans.hu 
 Current directory: {0}</value>
   </data>
   <data name="PersonalSettingsApplyButton" xml:space="preserve">
-    <value>_Apply</value>
+    <value>_Update FFB Sensitivity</value>
   </data>
   <data name="PersonalSettingsExportButton" xml:space="preserve">
     <value>_Export</value>
@@ -205,7 +205,7 @@ Current directory: {0}</value>
     <value>Personal Car Settings</value>
   </data>
   <data name="PreviewTitleLabel" xml:space="preserve">
-    <value>Preview of Personal Settings</value>
+    <value>Preview of Personal Car Settings</value>
   </data>
   <data name="ResetToDefaultsButton" xml:space="preserve">
     <value>_Reset to Defaults</value>
@@ -231,7 +231,16 @@ Current directory: {0}</value>
   <data name="WeightLabel" xml:space="preserve">
     <value>Weight [kg]</value>
   </data>
+  <data name="PersonalSettingsTargetCarNoneCheckBox" xml:space="preserve">
+    <value>_All cars</value>
+  </data>
+  <data name="PersonalSettingsTargetCarComboBoxText" xml:space="preserve">
+    <value>No car selected.</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>RSF RBR Power Steering</value>
+  </data>
+  <data name="DescriptionToggleButtonToolTip" xml:space="preserve">
+    <value>Show or hide help. [F1]</value>
   </data>
 </root>

@@ -193,6 +193,15 @@ namespace RsfRbrPowerSteering.View {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show or hide help. [F1].
+        /// </summary>
+        public static string DescriptionToggleButtonToolTip {
+            get {
+                return ResourceManager.GetString("DescriptionToggleButtonToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AWD.
         /// </summary>
         public static string DrivetrainAwdLabel {
@@ -262,7 +271,7 @@ namespace RsfRbrPowerSteering.View {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Apply.
+        ///   Looks up a localized string similar to _Update FFB Sensitivity.
         /// </summary>
         public static string PersonalSettingsApplyButton {
             get {
@@ -298,7 +307,25 @@ namespace RsfRbrPowerSteering.View {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preview of Personal Settings.
+        ///   Looks up a localized string similar to No car selected..
+        /// </summary>
+        public static string PersonalSettingsTargetCarComboBoxText {
+            get {
+                return ResourceManager.GetString("PersonalSettingsTargetCarComboBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _All cars.
+        /// </summary>
+        public static string PersonalSettingsTargetCarNoneCheckBox {
+            get {
+                return ResourceManager.GetString("PersonalSettingsTargetCarNoneCheckBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview of Personal Car Settings.
         /// </summary>
         public static string PreviewTitleLabel {
             get {

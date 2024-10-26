@@ -16,7 +16,6 @@ public class ViewModelCommands
         Load = new LoadCommand(
             commandManager,
             mainViewModel);
-        ToggleDescriptionVisibility = new ToggleDescriptionVisibilityCommand(mainViewModel);
         ReloadCars = new ReloadCarsCommand(
             commandManager,
             mainViewModel);
@@ -42,10 +41,11 @@ public class ViewModelCommands
             commandManager,
             messageService,
             mainViewModel);
+        ToggleDescriptionVisibility = new ToggleDescriptionVisibilityCommand(
+            mainViewModel);
     }
 
     public ICommand SetPrimarySurfaceNull { get; }
-    public ICommand ToggleDescriptionVisibility { get; }
     public ICommand Load { get; }
     public ICommand ReloadCars { get; }
     public ICommand ExportCars { get; }
@@ -54,4 +54,5 @@ public class ViewModelCommands
     public ICommand ApplyScaling { get; }
     public ICommand ResetToDefaults { get; }
     public ICommand ClearFfbSens { get; }
+    public ICommand ToggleDescriptionVisibility { get; }
 }

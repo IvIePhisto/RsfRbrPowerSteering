@@ -13,7 +13,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
     <Copyright>CC BY-NC 4.0</Copyright>
     <Description>This utility is for Richard Burns Rally (RBR) as distributed by RallySimFan.hu (RSF). It allows to set the force-feedback (FFB) sensitivity for all cars that you have driven previously, based on the lock-to-lock rotation of the steering wheel. Additional scaling can be applied depending on drive-train and surface.</Description>
     <Title>RSF RBR Power Steering</Title>

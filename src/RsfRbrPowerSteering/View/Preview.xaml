@@ -27,42 +27,24 @@
     </UserControl.Resources>
     
     <Grid x:Name="Grid" HorizontalAlignment="Stretch">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" HorizontalAlignment="Stretch">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition MinWidth="10"/>
-                <ColumnDefinition Width="Auto" MinWidth="80"/>
-            </Grid.ColumnDefinitions>
+        <Label Grid.Row="0"
+            Content="{x:Static view:ViewTexts.PreviewTitleLabel}"
+            FontSize="14"
+            FontWeight="Bold"/>
 
-            <Label Grid.Row="0"
-                HorizontalAlignment="Stretch"
-                Content="{x:Static view:ViewTexts.PreviewTitleLabel}"
-                FontSize="18"
-                FontWeight="Bold"/>
-            
-            <Button Grid.Row="2"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Right"
-                FontSize="18"
-                FontWeight="Bold"
-                Content="{x:Static view:ViewTexts.PersonalSettingsApplyButton}"
-                Grid.Column="10" Command="{Binding Commands.ApplyScaling}" />
-        </Grid>
-
-        <DataGrid Grid.Row="1"
+        <DataGrid x:Name="CarPreviews"
+            Grid.Row="1"
             HorizontalScrollBarVisibility="Auto"
             ItemsSource="{Binding Source={StaticResource CarsWithoutDefault}}"
             AutoGenerateColumns="False"
             IsReadOnly="True"
+            SelectedItem="{Binding TargetCar}"
+            SelectionMode="Single"
             CanUserReorderColumns="False"
             CanUserResizeColumns="False"
             CanUserDeleteRows="False"

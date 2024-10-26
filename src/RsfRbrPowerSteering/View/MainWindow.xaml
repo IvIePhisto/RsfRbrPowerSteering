@@ -7,7 +7,7 @@
     xmlns:viewModel="clr-namespace:RsfRbrPowerSteering.ViewModel;assembly=RsfRbrPowerSteering.ViewModel"
     xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
     mc:Ignorable="d"
-    Title="{x:Static view:ViewTexts.WindowTitle}"
+    Title="{Binding WindowTitle}"
     Width="1300" Height="800" MinHeight="700" MinWidth="900"
     WindowStartupLocation="CenterScreen"
     ResizeMode="CanResizeWithGrip"
@@ -26,11 +26,15 @@
         </behaviors:EventTrigger>
     </behaviors:Interaction.Triggers>
 
+    <Window.InputBindings>
+        <KeyBinding Key="F1" Command="{Binding Commands.ToggleDescriptionVisibility}"/>
+    </Window.InputBindings>
+
     <Grid Margin="15">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="500" />
-            <ColumnDefinition Width="10" MaxWidth="10" />
-            <ColumnDefinition />
+            <ColumnDefinition MinWidth="550" />
+            <ColumnDefinition Width="10" MinWidth="10" MaxWidth="10" />
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <view:Editor Grid.Column="0"/>
@@ -39,6 +43,6 @@
             ResizeBehavior="PreviousAndNext"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch" />
-        <view:Preview Grid.Column="2"/>
+        <view:Preview Grid.Column="2" x:Name="Preview"/>
     </Grid>
 </Window>

@@ -70,4 +70,23 @@ public partial class Editor : UserControl
                 break;
         }
     }
+
+    private void TargetCar_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        var mainViewModel = DataContext as MainViewModel;
+
+        if (mainViewModel == null || mainViewModel.TargetCar == null)
+        {
+            return;
+        }
+
+        var mainWindow = Application.Current.MainWindow as MainWindow;
+
+        if (mainWindow == null)
+        {
+            return;
+        }
+
+        mainWindow.Preview.CarPreviews.ScrollIntoView(mainViewModel.TargetCar);
+    }
 }
