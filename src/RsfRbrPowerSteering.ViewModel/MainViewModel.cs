@@ -205,14 +205,13 @@ public class MainViewModel : NotifyPropertyChangedBase
             {
                 // Add new car:
                 carViewModel = new CarViewModel(car);
-
-                if (personalLockToLockRotation.HasValue)
-                {
-                    carViewModel.LockToLockRotation = personalLockToLockRotation.Value;
-                }
-
                 _carsById[carId] = carViewModel;
                 Cars.Add(carViewModel);
+            }
+
+            if (personalLockToLockRotation.HasValue)
+            {
+                carViewModel.LockToLockRotation = personalLockToLockRotation.Value;
             }
 
             lockToLockRotations.Add(car.LockToLockRotation);
@@ -272,6 +271,7 @@ public class MainViewModel : NotifyPropertyChangedBase
             var newLockToLockRotation = new LockToLockRotationViewModel(lockToLockRotation);
             _lockToLockRotationsByIntValue[lockToLockRotation] = newLockToLockRotation;
 
+            // Find insert index to keep sorted:
             if (j < LockToLockRotations.Count)
             {
                 LockToLockRotationViewModel existingLockToLockRotation;
@@ -401,7 +401,7 @@ public class MainViewModel : NotifyPropertyChangedBase
         _carInfos = await CarInfo.ReadCarsAsync();
         IEnumerable<CarInfo> carInfos = TargetCar == null
             ? _carInfos.Values
-            : ([_carInfos[TargetCar.Id]]);
+            : [_carInfos[TargetCar.Id]];
         IReadOnlyDictionary<int, CarFfbSens> ffbSenses = CalculateFfbSenses(carInfos);
         _personalData.ReadFile();
         _personalData.ApplyFfbSens(ffbSenses.Select(kvp => (kvp.Key, kvp.Value.ToPersonal())));

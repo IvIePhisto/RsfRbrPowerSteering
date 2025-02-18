@@ -1,26 +1,26 @@
 {
   "IsDescriptionVisible": false,
-  "TargetCarId": 41,
+  "TargetCarId": null,
   "PrimaryCar": {
-    "SelectedCarId": 105,
-    "WeightKg": 1349,
-    "LockToLockRotation": 1007,
-    "Drivetrain": 1,
-    "FfbSensGravel": 1200,
-    "FfbSensTarmac": 1300,
-    "FfbSensSnow": 1200
+    "SelectedCarId": 59,
+    "WeightKg": 939,
+    "LockToLockRotation": 900,
+    "Drivetrain": 0,
+    "FfbSensGravel": 800,
+    "FfbSensTarmac": 800,
+    "FfbSensSnow": 800
   },
   "SecondaryCar": {
-    "SelectedCarId": 88,
-    "WeightKg": 1410,
-    "LockToLockRotation": 565,
+    "SelectedCarId": 106,
+    "WeightKg": 1430,
+    "LockToLockRotation": 428,
     "Drivetrain": 2,
-    "FfbSensGravel": 1600,
-    "FfbSensTarmac": 1600,
-    "FfbSensSnow": 1600
+    "FfbSensGravel": 3200,
+    "FfbSensTarmac": 3200,
+    "FfbSensSnow": 3200
   },
-  "PrimarySurface": "",
-  "AdjustmentWeightRatio": 10,
+  "PrimarySurface": "Tarmac",
+  "AdjustmentWeightRatio": 20,
   "AdjustmentFwd": 100,
   "AdjustmentRwd": 100,
   "AdjustmentAwd": 100,
